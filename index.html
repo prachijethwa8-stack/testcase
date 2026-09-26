@@ -1,227 +1,1427 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Prachi Jethwa | IT Student Portfolio</title>
+
   <style>
-    :root{
-      --bg:#fff8fc; --card:#ffffff; --card2:#fff0f7; --text:#33243b;
-      --muted:#806d83; --accent:#d86aa5; --accent2:#8b78e6; --border:#f0d6e5;
+
+    /* =========================
+       BASIC SETTINGS
+    ========================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:Inter,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 10% 10%,#ffe4f1 0,transparent 25%),radial-gradient(circle at 90% 15%,#e9e2ff 0,transparent 25%),linear-gradient(135deg,#fff9fc,#fff5fa 55%,#f8f5ff);
-      color:var(--text);line-height:1.6;
+
+    html {
+      scroll-behavior: smooth;
     }
-    a{color:inherit;text-decoration:none}
-    .container{width:min(1100px,92%);margin:auto}
-    nav{
-      position:sticky;top:0;z-index:20;background:rgba(255,250,253,.9);backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--border)
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, #ffe7f1 0%, transparent 25%),
+        radial-gradient(circle at 90% 15%, #eee6ff 0%, transparent 25%),
+        linear-gradient(135deg, #fff9fc, #fff4f9 55%, #f8f5ff);
+
+      color: #39263d;
+      line-height: 1.6;
     }
-    nav .inner{height:70px;display:flex;align-items:center;justify-content:space-between}
-    .logo{font-size:1.25rem;font-weight:800}.logo span{color:var(--accent)}
-    .links{display:flex;gap:25px;list-style:none}.links a{color:var(--muted);font-size:.95rem}.links a:hover{color:white}
-    .menu{display:none;background:none;border:0;color:white;font-size:1.6rem}
-    .hero{min-height:calc(100vh - 70px);display:grid;place-items:center;padding:80px 0}
-    .hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:55px;align-items:center}
-    .tag{display:inline-block;padding:7px 13px;border:1px solid #3a4770;border-radius:999px;color:#9b5278;background:#fff0f7;margin-bottom:20px;font-size:.85rem}
-    h1{font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.02;letter-spacing:-3px}
-    h1 span{color:var(--accent)}
-    .hero p{font-size:1.1rem;color:var(--muted);max-width:650px;margin:24px 0}
-    .buttons{display:flex;gap:13px;flex-wrap:wrap}.btn{padding:12px 20px;border-radius:10px;border:1px solid var(--border);font-weight:700}
-    .primary{background:var(--accent);border-color:var(--accent)}.secondary{background:transparent}
-    .profile-card{background:rgba(255,255,255,.86);border:1px solid var(--border);border-radius:25px;padding:35px;text-align:center;box-shadow:0 18px 50px #c67fa522}
-    .avatar{width:150px;height:150px;margin:auto;border-radius:50%;display:grid;place-items:center;font-size:3.2rem;font-weight:900;background:linear-gradient(135deg,#f3a7c8,#bba8f5);box-shadow:0 0 45px #7c5cff55}
-    .profile-card h2{margin-top:22px}.profile-card p{font-size:.92rem;margin:5px 0}
-    section{padding:90px 0}.section-title{font-size:2.2rem;margin-bottom:10px}.section-sub{color:var(--muted);margin-bottom:35px}
-    .about{display:grid;grid-template-columns:1fr 1fr;gap:25px}
-    .card{background:rgba(255,255,255,.82);border:1px solid var(--border);border-radius:18px;padding:28px}
-    .card p{color:var(--muted)}.facts{display:grid;gap:14px}.fact{padding:16px;background:#fff3f8;border-radius:12px}.fact b{display:block;color:white}
-    .skills{display:flex;flex-wrap:wrap;gap:12px}.skill{padding:10px 15px;background:#fff0f7;border:1px solid var(--border);border-radius:999px;color:#dce2f3}
-    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .project{transition:.25s}.project:hover{transform:translateY(-5px);border-color:#e6a7c8}
-    .project-icon{font-size:2rem;margin-bottom:14px}.project h3{margin-bottom:8px}.project p{font-size:.92rem}
-    .project .tech{margin-top:15px;color:var(--accent2);font-size:.8rem}
-    .timeline{border-left:2px solid #334064;padding-left:25px}.timeline-item{margin-bottom:28px;position:relative}.timeline-item:before{content:"";position:absolute;left:-34px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
-    .contact{display:grid;grid-template-columns:1fr 1fr;gap:25px}.contact-box{display:flex;gap:15px;align-items:center;padding:18px;background:#fff3f8;border-radius:12px;margin-top:12px}
-    footer{padding:30px 0;border-top:1px solid var(--border);color:var(--muted);text-align:center}
-    .top{position:fixed;right:22px;bottom:22px;width:45px;height:45px;border:0;border-radius:50%;background:var(--accent);color:white;font-size:1.2rem;cursor:pointer;display:none}
-    @media(max-width:800px){
-      .hero-grid,.about,.contact{grid-template-columns:1fr}.projects{grid-template-columns:1fr 1fr}.links{display:none}.menu{display:block}
-      .links.open{display:flex;position:absolute;top:70px;left:0;right:0;padding:20px;background:#fff8fc;flex-direction:column}
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
-    @media(max-width:520px){.projects{grid-template-columns:1fr}h1{letter-spacing:-2px}.hero{padding:55px 0}}
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+
+    /* =========================
+       NAVBAR
+    ========================== */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(255, 249, 252, 0.9);
+      backdrop-filter: blur(15px);
+
+      border-bottom: 1px solid #f0d8e5;
+    }
+
+    nav .inner {
+      height: 70px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #57263f;
+    }
+
+    .logo span {
+      color: #d96d9f;
+    }
+
+    .links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .links a {
+      color: #806579;
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+
+    .links a:hover {
+      color: #d05f96;
+    }
+
+    .menu {
+      display: none;
+
+      background: none;
+      border: none;
+
+      font-size: 1.7rem;
+      color: #6b2348;
+
+      cursor: pointer;
+    }
+
+
+    /* =========================
+       HERO SECTION
+    ========================== */
+
+    .hero {
+      min-height: calc(100vh - 70px);
+
+      display: grid;
+      place-items: center;
+
+      padding: 80px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+
+      gap: 60px;
+
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-block;
+
+      padding: 8px 15px;
+
+      border-radius: 50px;
+
+      background: #ffe8f2;
+
+      border: 1px solid #f2bfd6;
+
+      color: #9b5278;
+
+      font-size: 0.9rem;
+
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.3rem);
+
+      line-height: 1.05;
+
+      letter-spacing: -3px;
+
+      color: #38243b;
+    }
+
+    h1 span {
+      color: #d45f98;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+
+      color: #806d83;
+
+      max-width: 650px;
+
+      margin: 25px 0;
+    }
+
+    .buttons {
+      display: flex;
+
+      gap: 13px;
+
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 20px;
+
+      border-radius: 12px;
+
+      font-weight: 700;
+
+      border: 1px solid #edbfd5;
+
+      transition: 0.25s;
+    }
+
+    .primary {
+      background: linear-gradient(
+        135deg,
+        #d86aa5,
+        #a987e8
+      );
+
+      color: white;
+
+      border: none;
+
+      box-shadow: 0 8px 20px rgba(216, 106, 165, 0.25);
+    }
+
+    .secondary {
+      background: white;
+
+      color: #7d4565;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+
+    /* =========================
+       PROFILE CARD
+    ========================== */
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.82);
+
+      border: 1px solid #f0d6e5;
+
+      border-radius: 25px;
+
+      padding: 35px;
+
+      text-align: center;
+
+      box-shadow: 0 20px 50px rgba(198, 127, 162, 0.15);
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+
+      margin: auto;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      font-size: 3.2rem;
+
+      font-weight: 900;
+
+      color: white;
+
+      background: linear-gradient(
+        135deg,
+        #f3a7c8,
+        #bba8f5
+      );
+
+      box-shadow:
+        0 10px 30px rgba(215, 116, 164, 0.25);
+    }
+
+    .profile-card h2 {
+      margin-top: 20px;
+
+      color: #57263f;
+    }
+
+    .profile-card p {
+      color: #806d83;
+
+      font-size: 0.92rem;
+    }
+
+
+    /* =========================
+       GENERAL SECTION
+    ========================== */
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      font-size: 2.3rem;
+
+      color: #4b2943;
+
+      margin-bottom: 10px;
+    }
+
+    .section-sub {
+      color: #806d83;
+
+      margin-bottom: 35px;
+    }
+
+
+    /* =========================
+       ABOUT
+    ========================== */
+
+    .about {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 25px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.8);
+
+      border: 1px solid #f0d6e5;
+
+      border-radius: 20px;
+
+      padding: 28px;
+
+      box-shadow: 0 10px 35px rgba(198, 127, 162, 0.08);
+    }
+
+    .card p {
+      color: #806d83;
+    }
+
+    .facts {
+      display: grid;
+
+      gap: 14px;
+    }
+
+    .fact {
+      padding: 16px;
+
+      background: #fff0f7;
+
+      border: 1px solid #f1d4e3;
+
+      border-radius: 14px;
+    }
+
+    .fact b {
+      display: block;
+
+      color: #6b2348;
+
+      margin-bottom: 3px;
+    }
+
+
+    /* =========================
+       SKILLS SECTION
+       DARKER PINK
+    ========================== */
+
+    #skills {
+      background: #f9d3e3;
+
+      padding: 90px 0;
+
+      border-top: 1px solid #f1c1d6;
+      border-bottom: 1px solid #f1c1d6;
+    }
+
+    #skills .section-title {
+      color: #632341;
+    }
+
+    #skills .section-sub {
+      color: #8a4f6d;
+    }
+
+    #skills .card {
+      background: #f6bfd7;
+
+      border: 1px solid #e89abc;
+
+      box-shadow:
+        0 12px 35px rgba(160, 65, 110, 0.12);
+    }
+
+    .skills {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+    }
+
+    #skills .skill {
+      padding: 10px 16px;
+
+      background: #e88db8;
+
+      color: #5b173b;
+
+      border: 1px solid #d96d9f;
+
+      border-radius: 50px;
+
+      font-weight: 600;
+
+      transition: all 0.25s ease;
+    }
+
+    #skills .skill:hover {
+      background: #d96d9f;
+
+      color: white;
+
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 6px 15px rgba(190, 70, 125, 0.25);
+    }
+
+
+    /* =========================
+       PROJECTS
+    ========================== */
+
+    .projects {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+    .project {
+      transition: 0.25s;
+    }
+
+    .project:hover {
+      transform: translateY(-6px);
+
+      border-color: #e6a7c8;
+
+      box-shadow:
+        0 15px 35px rgba(198, 127, 162, 0.15);
+    }
+
+    .project-icon {
+      font-size: 2.2rem;
+
+      margin-bottom: 12px;
+    }
+
+    .project h3 {
+      color: #632341;
+
+      margin-bottom: 8px;
+    }
+
+    .project p {
+      font-size: 0.92rem;
+    }
+
+    .tech {
+      margin-top: 15px;
+
+      color: #b04e80;
+
+      font-size: 0.82rem;
+
+      font-weight: 600;
+    }
+
+
+    /* =========================
+       JOURNEY
+    ========================== */
+
+    .timeline {
+      border-left: 3px solid #e6a1c3;
+
+      padding-left: 28px;
+    }
+
+    .timeline-item {
+      margin-bottom: 30px;
+
+      position: relative;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+
+      position: absolute;
+
+      left: -36px;
+
+      top: 7px;
+
+      width: 13px;
+      height: 13px;
+
+      border-radius: 50%;
+
+      background: #d86aa5;
+
+      border: 3px solid #ffe8f2;
+    }
+
+    .timeline-item h3 {
+      color: #632341;
+
+      margin-bottom: 5px;
+    }
+
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 25px;
+    }
+
+    .contact-box {
+      display: flex;
+
+      gap: 15px;
+
+      align-items: center;
+
+      padding: 18px;
+
+      background: #fff0f7;
+
+      border: 1px solid #f1d4e3;
+
+      border-radius: 14px;
+
+      margin-top: 12px;
+
+      color: #6b2348;
+
+      transition: 0.2s;
+    }
+
+    .contact-box:hover {
+      transform: translateX(5px);
+
+      background: #ffe5f1;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      padding: 30px 0;
+
+      border-top: 1px solid #f0d6e5;
+
+      color: #806d83;
+
+      text-align: center;
+
+      background: #fff8fc;
+    }
+
+
+    /* =========================
+       BACK TO TOP
+    ========================== */
+
+    .top {
+      position: fixed;
+
+      right: 22px;
+
+      bottom: 22px;
+
+      width: 45px;
+      height: 45px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: #d86aa5;
+
+      color: white;
+
+      font-size: 1.2rem;
+
+      cursor: pointer;
+
+      display: none;
+
+      box-shadow: 0 7px 20px rgba(216, 106, 165, 0.3);
+    }
+
+
+    /* =========================
+       DECORATIONS
+    ========================== */
+
+    .decor {
+      position: fixed;
+
+      pointer-events: none;
+
+      z-index: -1;
+
+      color: #e9a5c5;
+
+      opacity: 0.5;
+
+      font-size: 22px;
+    }
+
+    .decor.one {
+      top: 120px;
+      left: 3%;
+    }
+
+    .decor.two {
+      top: 35%;
+      right: 4%;
+    }
+
+    .decor.three {
+      bottom: 15%;
+      left: 4%;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 800px) {
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .projects {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .links {
+        display: none;
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .links.open {
+        display: flex;
+
+        position: absolute;
+
+        top: 70px;
+
+        left: 0;
+        right: 0;
+
+        padding: 20px;
+
+        background: #fff8fc;
+
+        flex-direction: column;
+
+        border-bottom: 1px solid #f0d6e5;
+      }
+    }
+
+
+    @media (max-width: 520px) {
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .profile-card {
+        padding: 25px;
+      }
+
+    }
+
   </style>
 </head>
-<body><div aria-hidden="true" style="position:fixed;top:105px;left:3%;font-size:22px;opacity:.55;pointer-events:none">✿</div><div aria-hidden="true" style="position:fixed;top:32%;right:4%;font-size:18px;opacity:.5;pointer-events:none">♡</div><div aria-hidden="true" style="position:fixed;bottom:18%;left:4%;font-size:18px;opacity:.45;pointer-events:none">✦</div>
+
+
+<body>
+
+
+  <!-- Cute Decorations -->
+
+  <div class="decor one">✿</div>
+
+  <div class="decor two">♡</div>
+
+  <div class="decor three">✦</div>
+
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+
   <nav>
+
     <div class="container inner">
-      <a href="#" class="logo">Prachi<span>.</span></a>
-      <button class="menu" onclick="toggleMenu()">☰</button>
+
+      <a href="#" class="logo">
+        Prachi<span>.</span>
+      </a>
+
+      <button class="menu" onclick="toggleMenu()">
+        ☰
+      </button>
+
       <ul class="links" id="links">
-        <li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li><li><a href="#journey">Journey</a></li><li><a href="#contact">Contact</a></li>
+
+        <li>
+          <a href="#about">About</a>
+        </li>
+
+        <li>
+          <a href="#skills">Skills</a>
+        </li>
+
+        <li>
+          <a href="#projects">Projects</a>
+        </li>
+
+        <li>
+          <a href="#journey">Journey</a>
+        </li>
+
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+
       </ul>
+
     </div>
+
   </nav>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="tag">🌷 IT Student • Software Development</div>
-          <h1>Hi, I'm <span>Prachi.</span> 🌸<br>Building my tech journey.</h1>
-          <p>
-            I'm an Information Technology student at TCET, currently developing my
-            skills in Java, DSA, databases and software development.
-          </p>
-          <div class="buttons">
-            <a class="btn primary" href="#projects">View Projects</a>
-            <a class="btn secondary" href="#contact">Let's Connect</a>
-          </div>
-        </div>
-        <div class="profile-card">
-          <div class="avatar">PJ</div><div style="margin-top:14px;color:#d86aa5;font-size:1.2rem">♡ ✦ ♡</div>
-          <h2>Prachi Jethwa 🌷</h2>
-          <p>IT Student at TCET</p>
-          <p>Java • DSA • Software Development</p>
-        </div>
-      </div>
-    </section>
 
-    <section id="about">
-      <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <p class="section-sub">A quick introduction.</p>
-        <div class="about">
-          <div class="card">
-            <p>
-              I'm an IT student interested in software development and problem solving.
-              I enjoy learning programming concepts by building projects and practicing
-              data structures and algorithms. My current learning path includes Java,
-              DSA, SQL/DBMS and web development.
-            </p>
-            <br>
-            <p>
-              I'm focused on strengthening my fundamentals and gradually moving toward
-              full-stack software development.
-            </p>
-          </div>
-          <div class="facts">
-            <div class="fact"><b>🎓 Education</b>Information Technology — TCET</div>
-            <div class="fact"><b>💻 Current Focus</b>Java, DSA, SQL & Software Development</div>
-            <div class="fact"><b>🌐 Web Path</b>HTML/CSS/JavaScript → React → Backend</div>
-            <div class="fact"><b>🚀 Goal</b>Grow into a strong software developer</div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- =========================
+       HERO
+  ========================== -->
 
-    <section id="skills">
-      <div class="container">
-        <h2 class="section-title">Skills & Technologies</h2>
-        <p class="section-sub">Technologies I'm learning and working with.</p>
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <div class="tag">
+          🌷 IT Student • Software Development
+        </div>
+
+        <h1>
+          Hi, I'm
+          <span>Prachi.</span>
+          🌸
+          <br>
+          Building my tech journey.
+        </h1>
+
+        <p>
+          I'm an Information Technology student at TCET,
+          currently developing my skills in Java, DSA,
+          databases and software development.
+        </p>
+
+        <div class="buttons">
+
+          <a href="#projects" class="btn primary">
+            View Projects
+          </a>
+
+          <a href="#contact" class="btn secondary">
+            Let's Connect
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="profile-card">
+
+        <div class="avatar">
+          PJ
+        </div>
+
+        <div style="
+          margin-top:14px;
+          color:#d86aa5;
+          font-size:1.2rem;
+        ">
+          ♡ ✦ ♡
+        </div>
+
+        <h2>
+          Prachi Jethwa 🌷
+        </h2>
+
+        <p>
+          IT Student at TCET
+        </p>
+
+        <p>
+          Java • DSA • Software Development
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ABOUT
+  ========================== -->
+
+  <section id="about">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        About Me
+      </h2>
+
+      <p class="section-sub">
+        A little introduction about me.
+      </p>
+
+
+      <div class="about">
+
         <div class="card">
-          <div class="skills">
-            <span class="skill">Java</span><span class="skill">C</span><span class="skill">C++</span>
-            <span class="skill">Data Structures & Algorithms</span><span class="skill">SQL</span>
-            <span class="skill">DBMS</span><span class="skill">HTML</span><span class="skill">CSS</span>
-            <span class="skill">JavaScript</span><span class="skill">React.js</span>
-            <span class="skill">OOP</span><span class="skill">Git & GitHub</span>
-            <span class="skill">AWS Basics</span><span class="skill">Machine Learning Basics</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="projects">
-      <div class="container">
-        <h2 class="section-title">Projects & Academic Work</h2>
-        <p class="section-sub">Some areas I've worked on during my engineering journey.</p>
-        <div class="projects">
-          <div class="card project">
-            <div class="project-icon">🌾</div><h3>AgroConnect</h3>
-            <p>A DBMS-based system connecting farmers, crops, buyers, payments and administration.</p>
-            <div class="tech">SQL • DBMS • Relational Design</div>
-          </div>
-          <div class="card project">
-            <div class="project-icon">🧠</div><h3>DSA Mind Maps</h3>
-            <p>Visual learning material covering important data structures and algorithms for easier understanding.</p>
-            <div class="tech">DSA • Algorithms • Problem Solving</div>
-          </div>
-          <div class="card project">
-            <div class="project-icon">☁️</div><h3>AWS Static Website</h3>
-            <p>Academic cloud experiment involving an S3-hosted static website and AWS fundamentals.</p>
-            <div class="tech">AWS • S3 • HTML/CSS</div>
-          </div>
-          <div class="card project">
-            <div class="project-icon">⚡</div><h3>Digital Circuit Design</h3>
-            <p>Academic work involving digital logic, combinational/sequential circuits and presentation-based learning.</p>
-            <div class="tech">DCD • Logic Design • Electronics</div>
-          </div>
-          <div class="card project">
-            <div class="project-icon">📊</div><h3>Customer Segmentation</h3>
-            <p>A machine learning case study using K-Means clustering for customer segmentation.</p>
-            <div class="tech">Python • ML • K-Means</div>
-          </div>
-          <div class="card project">
-            <div class="project-icon">💡</div><h3>SIH Project Work</h3>
-            <p>Collaborative hackathon work involving problem analysis, presentation, frontend, backend and database roles.</p>
-            <div class="tech">Teamwork • Presentation • Problem Solving</div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <p>
+            I'm an IT student interested in software
+            development and problem solving.
+            I enjoy learning programming concepts
+            by building projects and practicing
+            data structures and algorithms.
+          </p>
 
-    <section id="journey">
-      <div class="container">
-        <h2 class="section-title">My Learning Journey</h2>
-        <p class="section-sub">The direction I'm currently following.</p>
-        <div class="card timeline">
-          <div class="timeline-item"><h3>IT Engineering</h3><p>Building a strong foundation through college coursework and practical projects.</p></div>
-          <div class="timeline-item"><h3>Java + DSA</h3><p>Improving programming fundamentals, OOP concepts and problem-solving skills.</p></div>
-          <div class="timeline-item"><h3>Web Development</h3><p>Learning HTML, CSS and JavaScript, with React as the next step.</p></div>
-          <div class="timeline-item"><h3>Software Development</h3><p>Gradually connecting frontend, backend, databases and real-world projects.</p></div>
-        </div>
-      </div>
-    </section>
+          <br>
 
-    <section id="contact">
-      <div class="container">
-        <h2 class="section-title">Let's Connect</h2>
-        <p class="section-sub">Open to learning, collaboration and new project opportunities.</p>
-        <div class="contact">
-          <div class="card">
-            <h3>Want to work together?</h3>
-            <p style="margin-top:10px">You can add your real email, LinkedIn and GitHub links below before publishing this portfolio.</p>
-          </div>
-          <div>
-            <div class="contact-box">📧 <span>Add your email here</span></div>
-            <div class="contact-box">💼 <span>Add your LinkedIn profile here</span></div>
-            <div class="contact-box">🐙 <span>Add your GitHub profile here</span></div>
-          </div>
+          <p>
+            My current learning path includes Java,
+            DSA, SQL/DBMS and web development.
+            I'm focused on strengthening my
+            fundamentals and gradually moving
+            towards full-stack software development.
+          </p>
+
         </div>
+
+
+        <div class="facts">
+
+          <div class="fact">
+
+            <b>🎓 Education</b>
+
+            Information Technology — TCET
+
+          </div>
+
+
+          <div class="fact">
+
+            <b>💻 Current Focus</b>
+
+            Java, DSA, SQL & Software Development
+
+          </div>
+
+
+          <div class="fact">
+
+            <b>🌐 Web Development</b>
+
+            HTML / CSS / JavaScript → React
+
+          </div>
+
+
+          <div class="fact">
+
+            <b>🚀 Goal</b>
+
+            Grow into a strong software developer
+
+          </div>
+
+        </div>
+
       </div>
-    </section>
-  </main>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SKILLS
+  ========================== -->
+
+  <section id="skills">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Skills & Technologies 💗
+      </h2>
+
+      <p class="section-sub">
+        Technologies I'm learning and working with.
+      </p>
+
+
+      <div class="card">
+
+        <div class="skills">
+
+          <span class="skill">
+            Java
+          </span>
+
+          <span class="skill">
+            C
+          </span>
+
+          <span class="skill">
+            C++
+          </span>
+
+          <span class="skill">
+            Data Structures & Algorithms
+          </span>
+
+          <span class="skill">
+            SQL
+          </span>
+
+          <span class="skill">
+            DBMS
+          </span>
+
+          <span class="skill">
+            HTML
+          </span>
+
+          <span class="skill">
+            CSS
+          </span>
+
+          <span class="skill">
+            JavaScript
+          </span>
+
+          <span class="skill">
+            React.js
+          </span>
+
+          <span class="skill">
+            OOP
+          </span>
+
+          <span class="skill">
+            Git & GitHub
+          </span>
+
+          <span class="skill">
+            AWS Basics
+          </span>
+
+          <span class="skill">
+            Machine Learning Basics
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PROJECTS
+  ========================== -->
+
+  <section id="projects">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Projects & Academic Work
+      </h2>
+
+      <p class="section-sub">
+        Some of my academic and learning projects.
+      </p>
+
+
+      <div class="projects">
+
+
+        <div class="card project">
+
+          <div class="project-icon">
+            🌾
+          </div>
+
+          <h3>
+            AgroConnect
+          </h3>
+
+          <p>
+            A DBMS-based system connecting farmers,
+            crops, buyers, payments and administration.
+          </p>
+
+          <div class="tech">
+            SQL • DBMS • Relational Design
+          </div>
+
+        </div>
+
+
+        <div class="card project">
+
+          <div class="project-icon">
+            🧠
+          </div>
+
+          <h3>
+            DSA Mind Maps
+          </h3>
+
+          <p>
+            Visual learning material covering
+            important data structures and algorithms.
+          </p>
+
+          <div class="tech">
+            DSA • Algorithms • Problem Solving
+          </div>
+
+        </div>
+
+
+        <div class="card project">
+
+          <div class="project-icon">
+            ☁️
+          </div>
+
+          <h3>
+            AWS Static Website
+          </h3>
+
+          <p>
+            Academic cloud experiment involving
+            an S3-hosted static website.
+          </p>
+
+          <div class="tech">
+            AWS • S3 • HTML/CSS
+          </div>
+
+        </div>
+
+
+        <div class="card project">
+
+          <div class="project-icon">
+            ⚡
+          </div>
+
+          <h3>
+            Digital Circuit Design
+          </h3>
+
+          <p>
+            Academic work involving digital logic,
+            combinational and sequential circuits.
+          </p>
+
+          <div class="tech">
+            DCD • Logic Design • Electronics
+          </div>
+
+        </div>
+
+
+        <div class="card project">
+
+          <div class="project-icon">
+            📊
+          </div>
+
+          <h3>
+            Customer Segmentation
+          </h3>
+
+          <p>
+            Machine learning case study using
+            K-Means clustering for customer segmentation.
+          </p>
+
+          <div class="tech">
+            Python • ML • K-Means
+          </div>
+
+        </div>
+
+
+        <div class="card project">
+
+          <div class="project-icon">
+            💡
+          </div>
+
+          <h3>
+            SIH Project Work
+          </h3>
+
+          <p>
+            Collaborative hackathon work involving
+            problem analysis, presentation, frontend,
+            backend and database roles.
+          </p>
+
+          <div class="tech">
+            Teamwork • Presentation • Problem Solving
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       LEARNING JOURNEY
+  ========================== -->
+
+  <section id="journey">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        My Learning Journey 🌸
+      </h2>
+
+      <p class="section-sub">
+        The direction I'm currently following.
+      </p>
+
+
+      <div class="card timeline">
+
+
+        <div class="timeline-item">
+
+          <h3>
+            IT Engineering
+          </h3>
+
+          <p>
+            Building a strong foundation through
+            college coursework and practical projects.
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <h3>
+            Java + DSA
+          </h3>
+
+          <p>
+            Improving programming fundamentals,
+            OOP concepts and problem-solving skills.
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <h3>
+            Web Development
+          </h3>
+
+          <p>
+            Learning HTML, CSS and JavaScript,
+            with React as the next step.
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <h3>
+            Software Development
+          </h3>
+
+          <p>
+            Gradually connecting frontend, backend,
+            databases and real-world projects.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONTACT
+  ========================== -->
+
+  <section id="contact">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Let's Connect 💌
+      </h2>
+
+      <p class="section-sub">
+        Open to learning, collaboration and new projects.
+      </p>
+
+
+      <div class="contact">
+
+
+        <div class="card">
+
+          <h3>
+            Want to work together?
+          </h3>
+
+          <p style="margin-top:10px">
+
+            You can add your real email,
+            LinkedIn and GitHub links here
+            before publishing your portfolio.
+
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <div class="contact-box">
+            📧
+            <span>
+              Add your email here
+            </span>
+          </div>
+
+
+          <div class="contact-box">
+            💼
+            <span>
+              Add your LinkedIn profile here
+            </span>
+          </div>
+
+
+          <div class="contact-box">
+            🐙
+            <span>
+              Add your GitHub profile here
+            </span>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
 
   <footer>
-    <div class="container">Made with ♡ by Prachi • © 2026</div>
+
+    <div class="container">
+
+      Made with ♡ by Prachi • © 2026
+
+    </div>
+
   </footer>
 
-  <button class="top" id="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <!-- BACK TO TOP -->
+
+  <button
+    class="top"
+    id="top"
+    onclick="window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    })"
+  >
+    ↑
+  </button>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
 
   <script>
-    function toggleMenu(){ document.getElementById('links').classList.toggle('open'); }
-    window.addEventListener('scroll',()=>{
-      document.getElementById('top').style.display = window.scrollY > 500 ? 'block' : 'none';
+
+    function toggleMenu() {
+
+      document
+        .getElementById("links")
+        .classList
+        .toggle("open");
+
+    }
+
+
+    window.addEventListener("scroll", function () {
+
+      const topButton =
+        document.getElementById("top");
+
+      if (window.scrollY > 500) {
+
+        topButton.style.display = "block";
+
+      } else {
+
+        topButton.style.display = "none";
+
+      }
+
     });
-    document.querySelectorAll('.links a').forEach(a=>a.addEventListener('click',()=>{
-      document.getElementById('links').classList.remove('open');
-    }));
+
+
+    document
+      .querySelectorAll(".links a")
+      .forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+          document
+            .getElementById("links")
+            .classList
+            .remove("open");
+
+        });
+
+      });
+
   </script>
+
+
 </body>
+
 </html>
